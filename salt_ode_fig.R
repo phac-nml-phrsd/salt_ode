@@ -61,7 +61,9 @@ ggplot(data = fig1data, aes(x = day, y = avg, colour = Compartment)) +
   geom_line() + 
   geom_ribbon(aes(ymin = til, ymax = tiu, fill = Compartment), alpha = 0.1, linetype = 2) +
   labs(x = "Time (day)", y = "Number of birds") + 
-  theme_classic()
+  theme_classic() +
+  scale_color_manual(values=c("#669900", "orange", "red", "blue")) + 
+  scale_fill_manual(values=c("#669900", "orange", "red", "blue"))
 
 
 
@@ -94,10 +96,13 @@ comp_scen_fig <- function(results, compartments, statistic, ylab, logT = FALSE, 
       position <- "identity"
     }
     
+    cbp1 <- c("#000000", "#56B4E9", "#E69F00", "#009E73", "#CC79A7", "#D55E00", "#0072B2")
+    
     print(ggplot(data = x, aes(x = day, y = value, color = Scenario)) + 
-            geom_line(position = position) +
+            geom_line(position = position, size = 1, linejoin = "round") +
             labs(x = "Time (day)", y = ylab) +
-            theme_classic())
+            theme_classic() +
+            scale_color_manual(values = cbp1))
     
   }
   
@@ -105,8 +110,8 @@ comp_scen_fig <- function(results, compartments, statistic, ylab, logT = FALSE, 
   
 }
 
-comp_scen_fig(res_list, tibble::lst("WFP"), mean, "Within-flock prevalence", logT = FALSE, jitter = TRUE)
-comp_scen_fig(res_list, tibble::lst("Conc"), mean, "Bacterial concentration (CFU/g of feces)", logT = FALSE, jitter = TRUE)
+comp_scen_fig(res_list, tibble::lst("WFP"), mean, "Within-flock prevalence", logT = FALSE, jitter = FALSE)
+comp_scen_fig(res_list, tibble::lst("Conc"), mean, "Bacterial concentration (CFU/g of feces)", logT = TRUE, jitter = FALSE)
 
 
 
