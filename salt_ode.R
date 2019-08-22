@@ -103,7 +103,7 @@ param_omega[] <- list(dex_fec)
 
 # DELTA
 # The excretion rate of Salmonella per gram of feces (CFU/gram)
-param_delta <- 10^(rpert(nsim, 1, 4.5, 7))
+param_delta <- 10^(rpert(nsim, 1.7762, 3.8715, 5.9669))
 
 # ETA
 # The daily ingestion rate of feces per bird (grams/day)
@@ -241,7 +241,7 @@ init_burn_s6    <- init_burn
 init_s6         <- init_base
 
 # MODIFY
-param_delta_s6  <- 10^(rpert(nsim, 1, 4.5, 5))
+param_delta_s6  <- 10^(rpert(nsim, 0.7762, 2.8715, 4.9669))
 
 # RUN BURN
 res_burn_s6     <- run_simulations(init_burn_s6, param_delta = param_delta_s6)
